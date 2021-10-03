@@ -1,0 +1,20 @@
+---
+# tasks for extracting codebase from source
+- name: Create project folder
+  win_shell: 'New-Item -Path {{ home_folder }} -Name {{ project_name }} -ItemType "directory"'
+
+- name: Create source folder
+  win_shell: 'New-Item -Path {{ home_folder }}\{{ project_name }} -Name src -ItemType "directory"'
+
+- name: Set Git SSL verify to false
+  win_shell: 'git config --global http.sslVerify "false"'
+
+- name: Clone repository to source folder
+  win_shell: 'git clone {{ git_repo_full }} {{ home_folder }}\{{ project_name }}\src'
+  ignore_errors: yes
+  register: result
+
+- name: Set failure
+  fail:
+    msg: "Code repository cloning failed, please check ansible log for details"
+  when: "'Failed to write item to store' not in result.stderr"

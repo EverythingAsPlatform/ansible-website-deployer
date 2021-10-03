@@ -1,0 +1,14 @@
+---
+# defaults file for website-deployer
+
+project_name: default
+git_repo_full:
+  https://{{ gitops_puller_username | urlencode }}:{{ gitops_puller_password |
+  urlencode }}@{{gitops_repo}}
+branch_name: master
+
+home_folder: C:\Users\<Windows host username>
+gitops_folder: '{{ home_folder }}\{{ project_name }}'
+
+docker_repo: <image repository>
+docker_image_path: '<image path>'

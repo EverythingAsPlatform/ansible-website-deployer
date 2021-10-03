@@ -1,0 +1,18 @@
+---
+# tasks for building web server image with website executables
+- name: Copy the Dockerfile
+  win_copy:
+    src:  Dockerfile
+    dest: '{{ home_folder }}\{{ project_name }}'
+
+- name: Build the aspnet docker image
+  win_shell: 'cd {{ home_folder }}\{{ project_name }}; docker build -t {{ project_name }}image:latest -f ./Dockerfile .'
+
+- name: Tag the aspnet image
+  win_shell: 'docker tag {{ project_name }}image:latest {{ docker_repo }}/{{ docker_image_path }}/{{ project_name }}:latest'
+
+- name: Login to Artifactory
+  win_shell: 'docker login -u {{ docker_user }} -p {{ docker_pass }} {{ docker_repo }}'
+
+- name: Push the tagged aspnet image to Artifactory
+  win_shell: 'docker push {{ docker_repo }}/{{ docker_image_path }}/{{ project_name }}:latest'

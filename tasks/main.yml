@@ -1,0 +1,9 @@
+---
+# tasks file for website-deployer
+- import_tasks: codebase.yml
+  tags:
+    - molecule-notest
+
+- import_tasks: image.yml
+  tags:
+    - molecule-notest
