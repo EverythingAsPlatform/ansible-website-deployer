@@ -1,7 +1,7 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+This role clones the application repository, prepares the docker image and then pushes to Jfrog Artifatory registry.
 
 Requirements
 ------------
