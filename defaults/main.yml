@@ -3,8 +3,8 @@
 
 project_name: default
 git_repo_full:
-  https://{{ gitops_puller_username | urlencode }}:{{ gitops_puller_password |
-  urlencode }}@{{gitops_repo}}
+  https://{{ git_puller_username | urlencode }}:{{ git_puller_password |
+  urlencode }}@{{git_repo}}
 branch_name: master
 
 home_folder: C:\Users\<Windows host username>
