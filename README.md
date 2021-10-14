@@ -1,4 +1,4 @@
-Role Name
+Website Deployer
 =========
 
 This role pulls executables from a repository, creates a container image and uploads it to a configured image repository. It also contains tasks for pulling the image and creating a container from the image. It also creates associated network components to make the website available for users.
