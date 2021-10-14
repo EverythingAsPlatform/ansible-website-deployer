@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: webserver
+  namespace: "{{ project_name }}"
+  labels:
+    app: webserver
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: webserver
+  type: LoadBalancer
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster

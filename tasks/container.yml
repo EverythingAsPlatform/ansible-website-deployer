@@ -1,0 +1,13 @@
+---
+# tasks for creating container in OCP
+- name: Create deployment manifest
+  k8s:
+    host: '{{ k8s_host }}'
+    api_key: '{{ k8s_api_key }}'
+    state: present
+    definition: "{{ lookup('template', '{{ item }}') }}"
+    verify_ssl: no
+  loop:
+    - deployment.yml
+    - service.yml
+    - route.yml
