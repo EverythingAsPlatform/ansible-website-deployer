@@ -10,7 +10,7 @@
   win_shell: 'git config --global http.sslVerify "false"'
 
 - name: Clone repository to source folder
-  win_shell: 'git clone {{ repo_full }} {{ home_folder }}\{{ project_name }}\src'
+  win_shell: 'git clone --branch {{ repo_full }} {{ home_folder }}\{{ project_name }}\src'
   ignore_errors: yes
   register: result
 
