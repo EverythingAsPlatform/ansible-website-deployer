@@ -1,0 +1,16 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: admin
+  namespace: "{{ project_name }}"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
+subjects:
+{% for group in project_admin_groups %}
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: "{{ group }}"
+{% endfor %}

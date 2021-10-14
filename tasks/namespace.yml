@@ -1,0 +1,22 @@
+---
+# Openshift namespace creation
+
+- set_fact:
+    template_list:
+      # Project creation
+      - namespace.yml
+      # Default roles
+      - roles-image-pullers.yml
+      - roles-image-builders.yml
+      - roles-deployers.yml
+      - roles-admin.yml
+
+- name: Create Kubernetes resources for {{ project_name }}
+  k8s:
+    host: '{{ k8s_host }}'
+    api_key: '{{ k8s_api_key }}'
+    state: present
+    definition: "{{ lookup('template', '{{ item }}') }}"
+    verify_ssl: no
+  loop: '{{ template_list }}'
+

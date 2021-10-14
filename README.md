@@ -1,7 +1,7 @@
 Website Deployer
 =========
 
-This role pulls executables from a repository, creates a container image and uploads it to a configured image repository. It also contains tasks for pulling the image and creating a container from the image. It also creates associated network components to make the website available for users.
+This role pulls ASP.NET 4.8 executables from a repository, creates a container image and uploads it to a configured image repository. It also contains tasks for creating a namespace in a Kubernetes cluster, pulling the image and creating a container from the image. It also creates associated network components to make the website available for users.
 
 Requirements
 ------------
@@ -11,7 +11,16 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Following variables should be provided as input parameters:
+  - src_repo #Repository that contains ASP.NET 4.8 website executables
+  - src_username #Username to access source repository
+  - src_password #Password or Token to access source repository
+  - branch_name #Branch from which source files are to be cloned
+  - docker_repo #Container image repository URL
+  - docker_image_path #Path with which to tag the image
+  - project_name #Name of Kubernetes namespace which will also be used to uniquely tag the image
+  - k8s_host #API URL of Kubernetes cluster
+  - k8s_api_key #User token from service account in Kubernetes cluster which has cluster-admin privileges
 
 Dependencies
 ------------
